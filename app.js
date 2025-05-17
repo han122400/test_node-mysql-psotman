@@ -1,8 +1,10 @@
 const express = require('express')
+const http = require('http')
 const db = require('./mysql') // 위에서 만든 mysql.js 불러오기
 
 const app = express()
 const port = 3000
+const HOST = '0.0.0.0' // 중요: 외부 접속을 허용
 
 app.use(express.json()) // JSON 요청 본문을 파싱하기 위한 미들웨어
 
