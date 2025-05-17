@@ -4,7 +4,7 @@ const db = require('./mysql') // 위에서 만든 mysql.js 불러오기
 const app = express()
 const port = 3000
 
-app.use(express.json())
+app.use(express.json()) // JSON 요청 본문을 파싱하기 위한 미들웨어
 
 app.get('/', (req, res) => {
   res.send('안녕하세요! Express.js 서버입니다.')
