@@ -59,6 +59,7 @@ text
 복사
 편집
 [사용자]   : 폼에 아이디/비밀번호 입력
+<br>
 [HTML/JS]  : fetch('/users', { POST... }) 호출
 [Node.js]  : req.body → MySQL INSERT 쿼리 수행
 [MySQL]    : users 테이블에 데이터 저장
