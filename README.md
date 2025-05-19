@@ -55,11 +55,7 @@ id에 NULL(빈 값) 도 못 넣음
 다른 컴퓨터에서 http://내아이피:3000 으로 접속(같은 서브넷에서만 가능)
 
 🔁 예시 흐름 (아이디/비밀번호 저장 시)<br>
-text<br>
-복사<br>
-편집<br>
-[사용자]   : 폼에 아이디/비밀번호 입력
-<br>
+[사용자]   : 폼에 아이디/비밀번호 입력<br>
 [HTML/JS]  : fetch('/users', { POST... }) 호출<br>
 [Node.js]  : req.body → MySQL INSERT 쿼리 수행<br>
 [MySQL]    : users 테이블에 데이터 저장<br>
