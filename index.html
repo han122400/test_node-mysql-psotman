@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mysql 데이터베이스 연결</title>
+  </head>
+  <body>
+    <h1>Mysql 데이터베이스 연결</h1>
+    <form id="userForm">
+      <input type="text" id="id" name="id" placeholder="아이디" required />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="비밀번호"
+        required
+      />
+      <br />
+      <button type="submit">저장</button>
+      <button type="button" id="viewDb">DB보기</button>
+    </form>
+    <hr />
+    <div id="result"></div>
+    <script>
+      // 사용자 등록 폼 제출 시 실행
+      // id, password를 입력받아 /users API에 POST 요청을 보냄
+      document
+        .getElementById('userForm')
+        .addEventListener('submit', async function (e) {
+          e.preventDefault() // 폼의 기본 제출 동작(새로고침) 방지
+          const id = document.getElementById('id').value // 입력된 아이디 값
+          const password = document.getElementById('password').value // 입력된 비밀번호 값
+          // /users 엔드포인트로 POST 요청 (사용자 추가)
+          const res = await fetch('/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, password }),
+          })
+          const data = await res.json() // 응답 데이터 파싱
+          // 결과 메시지를 화면에 표시
+          document.getElementById('result').innerText =
+            data.message || JSON.stringify(data)
+        })
+      // DB보기 버튼 클릭 시 실행
+      // /users API에 GET 요청을 보내 모든 사용자 정보를 확인함
+      document
+        .getElementById('viewDb')
+        .addEventListener('click', async function () {
+          // /users 엔드포인트로 GET 요청 (전체 사용자 조회)
+          const res = await fetch('/users')
+          const data = await res.json() // 응답 데이터 파싱
+          // 사용자 목록을 화면에 JSON 형태로 표시
+          document.getElementById('result').innerHTML =
+            '<pre>' + JSON.stringify(data, null, 2) + '</pre>'
+        })
+    </script>
+  </body>
+</html>
